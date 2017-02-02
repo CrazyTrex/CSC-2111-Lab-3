@@ -7,7 +7,15 @@ using namespace CSC2110::String;
 
 
 
-
+void Password::displayViableWords()
+{
+	ListArrayIterator<String> listIterator = viableWords->iterator();
+	while(listIterator->hasNext())
+	{
+		listIterator->next()->displayString();
+	}
+	delete listIterator;
+}
 
 
 Password::Password()
@@ -62,6 +70,7 @@ String* getOriginalWord(int index)
 void guess(int try_password, int num_matches)
 {
 		String* password_attempt = allWords->get(try_password);
+		for(int )
 }
 
 
