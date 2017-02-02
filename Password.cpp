@@ -126,11 +126,3 @@ int Password::bestGuess()
    return best_guess_index;  //return a 1-based index into the all_words list of words (careful)
 }
 
-int main()
-{
-	Password* password = new Password();
-	String* pie = new String("Pie");
-	password.addWord(pie);
-	delete password;
-	return 0;
-}
