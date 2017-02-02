@@ -25,10 +25,44 @@ Password::~Password()
 		String* str = listIterator->next();
 		delete str;
 	}
+	
+	delete listIterator;
 	delete viableWords;
 	delete allWords;
 }
 
+void Password::addWord(String* word)
+{
+	if(word.length() <= 0)
+		return;
+	if(len == 0)
+	{
+		len = word.length();
+	}
+	if(word.length() == len)
+	{
+		allWords->add(word);
+		viableWords->add(word);
+	}
+		
+}
+
+int getNumberOfPasswordsLeft()
+{
+	return viableWords->size();
+}
+
+String* getOriginalWord(int index)
+{
+	String* str = allWords->get(index);
+	return str;
+}
+
+
+void guess(int try_password, int num_matches)
+{
+		String* password_attempt = allWords->get(try_password);
+}
 
 
 int Password::bestGuess()
@@ -90,4 +124,13 @@ int Password::bestGuess()
 
    delete all_iter;
    return best_guess_index;  //return a 1-based index into the all_words list of words (careful)
+}
+
+int main()
+{
+	Password* password = new Password();
+	String* pie = new String("Pie");
+	password.addWord(pie);
+	delete password;
+	return 0;
 }
