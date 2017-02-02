@@ -2,29 +2,33 @@
 #include "Text.h"
 #include "ListArray.h"
 #include "ListArrayIterator.h"
-using CSC2110::ListArrayIterator;
-
+//using CSC2110::ListArrayIterator;
+using namespace CSC2110;
 #include <iostream>
 using namespace std;
+/*
 using namespace CSC2110::String;
-
+using namespace CSC2110::ListArray;
+*/
 int Password::getNumMatches(String* curr_word, String* word_guess)
 {
 	int numOfSameCharacters = 0;
-	for(int i = 0; i < curr_word->size();i++)
+	for(int i = 0; i < curr_word->length();i++)
 	{
 		if(curr_word->charAt(i) == word_guess->charAt(i))
 			numOfSameCharacters++;
 	}
+	
 	return numOfSameCharacters;
 }
 
 void Password::displayViableWords()
 {
-	ListArrayIterator<String> listIterator = viable_Words->iterator();
+	ListArrayIterator<String>* listIterator = viable_words->iterator();
 	while(listIterator->hasNext())
 	{
 		listIterator->next()->displayString();
+		cout<<endl;
 	}
 	delete listIterator;
 }
@@ -32,14 +36,14 @@ void Password::displayViableWords()
 
 Password::Password()
 {
-	viable_words = new String*[2];
-	all_words = new String*[2];
+	viable_words = new ListArray<String>;
+	all_words = new ListArray<String>;
 	int len = 0;
 }
 
 Password::~Password()
 {
-	ListArrayIterator<String> listIterator = all_words->iterator();
+	ListArrayIterator<String>* listIterator = all_words->iterator();
 	while(listIterator->hasNext())
 	{
 		String* str = listIterator->next();
@@ -53,13 +57,13 @@ Password::~Password()
 
 void Password::addWord(String* word)
 {
-	if(word.length() <= 0)
+	if(word->length() <= 0)
 		return;
 	if(len == 0)
 	{
-		len = word.length();
+		len = word->length();
 	}
-	if(word.length() == len)
+	if(word->length() == len)
 	{
 		all_words->add(word);
 		viable_words->add(word);
@@ -79,13 +83,13 @@ String* Password::getOriginalWord(int index)
 }
 
 
-void guess(int try_password, int num_matches)
+void Password::guess(int try_password, int num_matches)
 {
-		String* password_attempt = all_words->get(try_password);
-		for(int viable_words->size(); i >= 1; i--)
+	String* password_attempt = all_words->get(try_password);
+		for(int i =  viable_words->size(); i >= 1; i--)
 		{
 			int test = getNumMatches(password_attempt, viable_words->get(i));
-			if(test == num_matches)
+			if(test != num_matches)
 			{
 				viable_words->remove(i);
 			}
