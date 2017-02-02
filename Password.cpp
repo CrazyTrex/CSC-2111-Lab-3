@@ -3,15 +3,31 @@ using CSC2110::ListArrayIterator;
 
 #include <iostream>
 using namespace std;
+using namespace CSC2110::String;
 
 
 
 
 
 
+Password::Password()
+{
+	viableWords = new String*[2];
+	allWords = new String*[2];
+	int len = 0;
+}
 
-
-
+Password::~Password()
+{
+	ListArrayIterator<String> listIterator = allWords->iterator();
+	while(listIterator->hasNext())
+	{
+		String* str = listIterator->next();
+		delete str;
+	}
+	delete viableWords;
+	delete allWords;
+}
 
 
 
