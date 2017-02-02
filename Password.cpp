@@ -1,11 +1,18 @@
+/*
+	Cesar Camarena & Adam Rucker
+	2/2/2017
+	Lab 3/ Fallout Lab
+*/	
 #include "Password.h"
 #include "Text.h"
 #include "ListArray.h"
 #include "ListArrayIterator.h"
 //using CSC2110::ListArrayIterator;
-using namespace CSC2110;
 #include <iostream>
 using namespace std;
+using CSC2110::String;
+using CSC2110::ListArray;
+using CSC2110::ListArrayIterator;
 /*
 using namespace CSC2110::String;
 using namespace CSC2110::ListArray;
@@ -86,14 +93,16 @@ String* Password::getOriginalWord(int index)
 void Password::guess(int try_password, int num_matches)
 {
 	String* password_attempt = all_words->get(try_password);
-		for(int i =  viable_words->size(); i >= 1; i--)
+	
+	for(int i =  viable_words->size(); i >= 1; i--)
+	{
+		int test = getNumMatches(password_attempt, viable_words->get(i));//could have used a local variable to store viable_words->get(i) but it is not needed except in the function call
+		
+		if(test != num_matches)
 		{
-			int test = getNumMatches(password_attempt, viable_words->get(i));
-			if(test != num_matches)
-			{
-				viable_words->remove(i);
-			}
+			viable_words->remove(i);
 		}
+	}
 }
 
 

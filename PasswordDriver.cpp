@@ -1,10 +1,18 @@
+/*
+	Cesar Camarena & Adam Rucker
+	2/2/2017
+	Lab 3/ Fallout Lab
+*/	
 #include "Password.h"
 //fill in includes, don't forget namespaces
 #include "Keyboard.h"
 #include <iostream>
 #include "ReadFile.h"
 using namespace std;
-using namespace CSC2110;
+using CSC2110::ReadFile;
+using CSC2110::String;
+using CSC2110::Keyboard;
+
 void addWords(Password* fh)
 {
    Keyboard* kb = Keyboard::getKeyboard();
